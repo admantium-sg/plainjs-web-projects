@@ -8,8 +8,16 @@ let ticketPrice = parseInt(movieSelect.value);
 
 console.log("Ticket Price", ticketPrice, typeof ticketPrice);
 
+function updateStorage(key, json) {
+  localStorage.setItem(key, json);
+}
+
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
+
+  const seatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat));
+
+  updateStorage('selectedSeats', JSON.stringify(seatsIndex));
 
   count.innerText = selectedSeats.length;
   total.innerText = selectedSeats.length * ticketPrice;
@@ -17,6 +25,8 @@ function updateSelectedCount() {
 
 movieSelect.addEventListener('change', e => {
   ticketPrice = parseInt(e.target.value);
+  updateStorage('selectedMovieIndex', e.target.selectedIndex);
+  updateStorage('selectedMoviePrice', e.target.value);
   updateSelectedCount();
 })
 
