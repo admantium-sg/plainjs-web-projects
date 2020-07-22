@@ -5,14 +5,10 @@ const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
 const button = document.getElementById('button');
 
-console.log(form);
-
 function showError(input, message) {
   const formControl = input.parentElement;
-  console.log("showError", formControl);
   formControl.className = 'form-control error';
   const small = formControl.querySelector('small');
-  console.log(small);
   small.innerText = message
 }
 
@@ -31,8 +27,9 @@ function checkEmail(input) {
 }
 
 function checkPasswordsMatch(input1, input2) {
+  console.log("CHECK", input1.value, input2.value)
   if (input1.value !== input2.value) {
-    showError(input1);
+    showError(input1, '');
     showError(input2, `Passwords do not match`);
   } else {
     showSuccess(input1);
@@ -67,16 +64,13 @@ function getFieldName(input) {
 
 function submitForm(e) {
   e.preventDefault();
-  console.log("submit", e);
-
-  console.log("username", username.value);
 
   addValidation([username, email, password, password2]);
   checkLength(username, 3, 15);
   checkLength(password, 6, 15);
+  checkPasswordsMatch(password, password2);
 
   checkEmail(email);
-  checkPasswordsMatch(password, password2);
 }
 
 button.addEventListener('click', submitForm);
