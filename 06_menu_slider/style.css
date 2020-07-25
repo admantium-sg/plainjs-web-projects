@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
 :root {
   --modal-duration: 1s;
   --primary-color: #30336b;
@@ -9,8 +11,14 @@
 }
 
 body {
-  font-family: 'Orkney';
+  font-family: 'Lato', sans-serif;
+  margin: 0;
   transition: transform 0.3s ease;
+}
+
+body.show-nav {
+  /* Width of nav */
+  transform: translateX(200px);
 }
 
 nav {
@@ -32,34 +40,32 @@ nav .logo {
 }
 
 nav .logo img {
-  margin-left: 30px;
   height: 75px;
   width: 75px;
   border-radius: 50%;
 }
 
 nav ul {
-  list-style: none;
   padding: 0;
+  list-style-type: none;
   margin: 0;
 }
 
 nav ul li {
-  padding: 20px;
-  border-bottom: 1px solid #fff;
   border-bottom: 2px solid rgba(200, 200, 200, 0.1);
+  padding: 20px;
 }
 
-nav ul li:first-child {
+nav ul li:first-of-type {
   border-top: 2px solid rgba(200, 200, 200, 0.1);
 }
 
-nav a {
+nav ul li a {
   color: #fff;
   text-decoration: none;
 }
 
-nav a:hover {
+nav ul li a:hover {
   text-decoration: underline;
 }
 
@@ -81,7 +87,7 @@ header p {
 }
 
 button,
-input[type="submit"] {
+input[type='submit'] {
   background-color: var(--secondary-color);
   border: 0;
   border-radius: 5px;
@@ -97,7 +103,7 @@ button:focus {
 .toggle {
   background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
-  top: 200px;
+  top: 20px;
   left: 20px;
 }
 
@@ -115,7 +121,7 @@ button:focus {
 
 .modal-container {
   background-color: rgba(0, 0, 0, 0.6);
-  /* display: none; */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -138,6 +144,8 @@ button:focus {
   transform: translate(-50%, -50%);
   max-width: 100%;
   width: 400px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
 }
 
 .modal-header {
@@ -175,4 +183,14 @@ button:focus {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
