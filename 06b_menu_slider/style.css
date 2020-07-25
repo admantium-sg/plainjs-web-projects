@@ -1,0 +1,97 @@
+:root {
+  --primary-color: #30336b;
+  --secondary-color: #be2edd;
+}
+
+body {
+  font-family: 'HankenLight';
+  font-size: 16px;
+}
+
+nav {
+  background-color: var(--primary-color);
+  width: 200px;
+  height: 100vh;
+  position: absolute;
+  color: #fff;
+  border-right: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+nav .logo {
+  margin: 20px;
+}
+
+nav .logo img {
+  margin: 0 auto;
+  border-radius: 40px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+  padding: 20px 20px;
+}
+
+nav ul li:first-child {
+  border-top: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+nav ul a {
+  color: #fff;
+  text-decoration: none;
+  margin: 20px 0px 20px 20px;
+}
+
+nav ul a:hover {
+  text-decoration: underline;
+}
+
+header {
+  background-color: var(--primary-color);
+  height: 300px;
+  margin-left: 200px;
+  color: #fff;
+  text-align: center;
+}
+
+header>* {
+  padding: 20px;
+}
+
+header .toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 5px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: none;
+}
+
+header .button {
+  background-color: var(--secondary-color);
+  padding: 15px 15px;
+  font-size: 22px;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+main {
+  margin-left: 200px;
+}
+
+main div {
+  margin: 20px 20px;
+}
+
+main h2 {
+  margin-top: 20px;
+}
