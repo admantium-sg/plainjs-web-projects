@@ -63,7 +63,6 @@ header {
   background-color: var(--primary-color);
   color: #fff;
   text-align: center;
-  position: relative;
   padding: 20px;
 }
 
