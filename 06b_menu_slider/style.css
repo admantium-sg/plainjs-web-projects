@@ -1,7 +1,7 @@
 :root {
   --primary-color: #30336b;
   --secondary-color: #be2edd;
-
+  --modal-duration: 1s;
 }
 
 body {
@@ -83,13 +83,12 @@ header .toggle {
 
 .button {
   background-color: var(--secondary-color);
-  padding: 15px 15px;
-  font-size: 22px;
+  padding: 5px 5px;
+  font-size: 18px;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  padding: 10px;
 }
 
 main {
@@ -126,6 +125,8 @@ main h2 {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
 }
 
 .show-modal {
@@ -175,4 +176,14 @@ main h2 {
   width: 70px;
   padding: 5px;
   margin: 15px 0 15px 0;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
