@@ -114,12 +114,22 @@ main h2 {
   left: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
+  display: none;
 }
 
 .modal {
   background-color: #fff;
-  width: 90%;
-  max-width: 450px;
+  width: 450px;
+  max-width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}
+
+.show-modal {
+  display: block;
 }
 
 .modal .modal-header {
@@ -138,8 +148,6 @@ main h2 {
 .modal .modal-header h2 {
   margin-top: 15px;
 }
-
-
 
 .modal .modal-header #close-button {
   background-color: rgba(0, 0, 0, 0);
