@@ -1,6 +1,10 @@
 body {
   background-color: #34495e;
   color: #fff;
+  font-family: 'PoppinsRegular';
+  font-size: medium;
+  font-weight: normal;
+  text-align: center;
 }
 
 svg.figure-container {
@@ -13,4 +17,35 @@ svg.figure-container {
 
 line.figure-part {
   display: none;
+}
+
+.app-container {
+  margin: 0 auto;
+  padding-top: 10vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-container {
+  margin: 0 auto;
+  padding: 20px;
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.wrong-letters-container {}
+
+.word-container {
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.word-container>div {
+  display: inline-block;
+  border-bottom: 2px solid #556d85;
+  width: 20px;
+
+
 }
