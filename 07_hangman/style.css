@@ -32,12 +32,15 @@ body {
 .word-container {
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  align-items: flex-end;
 }
 
 .word-container>div {
   display: inline-block;
   border-bottom: 2px solid #556d85;
-  width: 20px;
+  width: 15px;
+  margin: 2px
 }
 
 .popup-container {
@@ -83,6 +86,7 @@ body {
   position: absolute;
   transform: translateX(-400%);
   transition: all 1s;
+  transform: translateX(-400%);
 }
 
 .show-notification {
