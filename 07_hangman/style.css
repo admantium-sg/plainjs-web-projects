@@ -54,7 +54,8 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  display: none;
+  transform: translatey(-400%);
+  transition: all 1s;
 }
 
 .popup {
@@ -91,4 +92,8 @@ body {
 
 .show-notification {
   transform: translateX(0%);
+}
+
+.show-popup {
+  transform: translatey(0%);
 }

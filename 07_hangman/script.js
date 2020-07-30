@@ -1,16 +1,37 @@
 const $word = document.getElementById('word');
 const $wrongLetters = document.getElementById('wrong-letters');
+const $popupContainer = document.getElementById('popup-container');
+const $playAgainButton = document.getElementById('play-again-button');
 
 const words = ['admantium', 'python', 'kubernetes', 'javascript'];
 
-const guessWord = words[Math.floor(Math.random() * words.length)];
-const correctLetters = [];
-const wrongLetters = [];
+var guessWord = (words[Math.floor(Math.random() * words.length)]).split('');
+var correctLetters = [];
+var wrongLetters = [];
 
-console.log(guessWord);
+function initGame() {
+  console.log("Init Game");
+  guessWord = (words[Math.floor(Math.random() * words.length)]).split('');
+  console.log(guessWord);
+  correctLetters = [];
+  wrongLetters = [];
+  updateUi();
+}
+
+function resetGame() {
+  initGame();
+  $popupContainer.classList.toggle('show-popup');
+}
+
+function checkWinning() {
+  console.log("Winning?", [...new Set(guessWord)].length, [...new Set(correctLetters)].length)
+  if ([...new Set(guessWord)].length === [...new Set(correctLetters)].length) {
+    $popupContainer.classList.add('show-popup');
+  };
+}
 
 function renderCorrectLetters() {
-  const html = guessWord.split('').map(letter => {
+  const html = guessWord.map(letter => {
     const val = correctLetters.includes(letter) ? letter : '';
     return `<div class="letter">${val}</div>`
   }).join('')
@@ -24,12 +45,12 @@ function renderWrongLetters() {
 
 function checkLetter(letter) {
   console.log("checkLetter", letter)
-  console.log("includeds", guessWord.split('').includes(letter))
+  console.log("includeds", guessWord.includes(letter))
   if (correctLetters.includes(letter) || wrongLetters.includes(letter)) {
     return;
   }
 
-  if (guessWord.split('').includes(letter)) {
+  if (guessWord.includes(letter)) {
     console.log("Correct letter")
     correctLetters.push(letter);
   } else {
@@ -50,8 +71,11 @@ function handleKeydown(e) {
 function updateUi() {
   renderCorrectLetters();
   renderWrongLetters();
+  checkWinning();
 }
 
 document.addEventListener('keydown', handleKeydown);
-updateUi();
+$playAgainButton.addEventListener('click', resetGame);
+
+initGame();
 
