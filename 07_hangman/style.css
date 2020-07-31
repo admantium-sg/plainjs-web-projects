@@ -13,7 +13,7 @@ svg.figure-container {
   stroke-linecap: round;
 }
 
-line.figure-part {
+.figure-part {
   display: none;
 }
 

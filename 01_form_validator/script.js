@@ -74,3 +74,44 @@ function submitForm(e) {
 }
 
 button.addEventListener('click', submitForm);
+
+
+function checkInputLength(inputId, min, max) {
+  const input = document.getElementById(inputId);
+  if (input.value.length < min) {
+    return [false, `${input.id} must be at least ${min}`]
+  } else if (input.value.length > max) {
+    return [false, `${input.id} must be less than ${max} characters`]
+  }
+  return [true, ``]
+}
+
+function validate(field, validationResult) {
+  const [success, msg] = validationResult;
+  if (success) {
+    showSuccess(msg)
+  } else {
+    showError(msg)
+  };
+}
+
+function showError(input, msg) {
+  const parent = input.parentElement;
+  parent.classList.remove = 'success';
+  parent.classList.add = 'error';
+  parent.querySelector('small').innerText = msg
+}
+
+function showSuccess(input, msg) {
+  const parent = input.parentElement;
+  parent.classList.remove = 'error';
+  parent.classList.add = 'success';
+  parent.querySelector('small').innerText = msg
+}
+
+function validateFields() {
+  validate('username', checkInputLength('username', 6, 15));
+}
+
+document.getElementById('sign-up-form').addEventListener('submit', validateFields)
+
