@@ -2,6 +2,7 @@ const $word = document.getElementById('word');
 const $wrongLetters = document.getElementById('wrong-letters');
 const $popupContainer = document.getElementById('popup-container');
 const $popupMessage = document.getElementById('popup-message');
+const $notificationContainer = document.getElementById('notification-container');
 const $playAgainButton = document.getElementById('play-again-button');
 
 const words = ['admantium', 'python', 'kubernetes', 'javascript'];
@@ -63,10 +64,19 @@ function renderHangman() {
   }
 }
 
+function renderNotification() {
+  $notificationContainer.classList.toggle('show-notification');
+
+  setTimeout(() => {
+    $notificationContainer.classList.toggle('show-notification');
+  }, 2000);
+}
+
 function checkLetter(letter) {
   console.log("checkLetter", letter)
   console.log("includeds", guessWord.includes(letter))
   if (correctLetters.includes(letter) || wrongLetters.includes(letter)) {
+    renderNotification();
     return;
   }
 

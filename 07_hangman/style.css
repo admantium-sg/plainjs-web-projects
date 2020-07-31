@@ -83,15 +83,14 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px 10px 0 0;
   padding: 10px;
-  top: 95vh;
   position: absolute;
-  transform: translateX(-400%);
+  top: 5px;
+  transform: translateY(-4000px);
   transition: all 1s;
-  transform: translateX(-400%);
 }
 
 .show-notification {
-  transform: translateX(0%);
+  transform: translateY(0px);
 }
 
 .show-popup {
