@@ -1,6 +1,6 @@
 const $balance = document.getElementById('balance');
-const $moneyPlus = document.getElementById('money-plus');
-const $moneyMinus = document.getElementById('money-minus');
+const $income = document.getElementById('money-plus');
+const $expense = document.getElementById('money-minus');
 const $list = document.getElementById('list');
 const $form = document.getElementById('form');
 const $text = document.getElementById('text');
@@ -10,7 +10,7 @@ const dummyTransactions = [
   { id: 1, text: 'Flower', amount: -20 },
   { id: 2, text: 'Salary', amount: 300 },
   { id: 3, text: 'Book', amount: -10 },
-  { id: 4, text: 'Camera', amount: 150 }
+  { id: 4, text: 'Camera', amount: 170 }
 ];
 
 var transactions = dummyTransactions;
@@ -29,13 +29,31 @@ function renderTransactions () {
 
     nodesArr.push(node);
   });
-  console.log(nodesArr);
 
   nodesArr.forEach(node => $list.appendChild(node));
 }
 
 function init () {
   renderTransactions();
+  renderGlobalBalance();
+}
+
+function renderGlobalBalance () {
+  const amountsArr = transactions.map(t => t.amount);
+
+  const balance = amountsArr.reduce((total, t) => (total += t));
+
+  const income = amountsArr
+    .filter(t => t > 0)
+    .reduce((total, t) => (total += t));
+
+  const expense = Math.abs(
+    amountsArr.filter(t => t <= 0).reduce((total, t) => (total += t))
+  );
+
+  $balance.innerText = '$' + balance;
+  $income.innerText = '$' + income;
+  $expense.innerText = '-$' + expense;
 }
 
 init();
