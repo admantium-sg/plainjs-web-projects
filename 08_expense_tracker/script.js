@@ -6,16 +6,7 @@ const $form = document.getElementById('form');
 const $text = document.getElementById('text');
 const $amount = document.getElementById('amount');
 
-let id = 5;
-
-const dummyTransactions = [
-  { id: 1, text: 'Flower', amount: -20 },
-  { id: 2, text: 'Salary', amount: 300 },
-  { id: 3, text: 'Book', amount: -10 },
-  { id: 4, text: 'Camera', amount: 170 }
-];
-
-var transactions = dummyTransactions;
+const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
 // Event Listener
 
@@ -25,12 +16,20 @@ function addTransaction (e) {
   const text = $text.value.trim();
   const amount = parseInt($amount.value);
 
-  transactions.push({ id: id++, text, amount });
+  transactions.push({ id: generateID(), text, amount });
 
-  console.log(dummyTransactions);
+  console.log(transactions);
 
   renderTransactions();
   renderGlobalBalance();
+
+  localStorage.setItem('transactions', JSON.stringify(transactions));
+}
+
+// Helper
+
+function generateID () {
+  return Math.floor(Math.random() * 10000);
 }
 
 // Render Functions
@@ -57,19 +56,28 @@ function renderTransactions () {
 function renderGlobalBalance () {
   const amountsArr = transactions.map(t => t.amount);
 
-  const balance = amountsArr.reduce((total, t) => (total += t));
+  var balance = 0;
+  var income = 0;
+  var expense = 0;
 
-  const income = amountsArr
-    .filter(t => t > 0)
-    .reduce((total, t) => (total += t));
+  try {
+    balance = amountsArr.reduce((total, t) => (total += t)).toFixed(2);
 
-  const expense = Math.abs(
-    amountsArr.filter(t => t <= 0).reduce((total, t) => (total += t))
-  );
+    income = amountsArr
+      .filter(t => t > 0)
+      .reduce((total, t) => (total += t))
+      .toFixed(2);
 
-  $balance.innerText = '$' + balance;
-  $income.innerText = '$' + income;
-  $expense.innerText = '-$' + expense;
+    expense = Math.abs(
+      amountsArr.filter(t => t <= 0).reduce((total, t) => (total += t))
+    ).toFixed(2);
+  } catch (e) {
+    // do nothing
+  } finally {
+    $balance.innerText = '$' + balance;
+    $income.innerText = '$' + income;
+    $expense.innerText = '-$' + expense;
+  }
 }
 
 function init () {
