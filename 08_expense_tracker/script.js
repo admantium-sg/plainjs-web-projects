@@ -6,6 +6,8 @@ const $form = document.getElementById('form');
 const $text = document.getElementById('text');
 const $amount = document.getElementById('amount');
 
+let id = 5;
+
 const dummyTransactions = [
   { id: 1, text: 'Flower', amount: -20 },
   { id: 2, text: 'Salary', amount: 300 },
@@ -15,7 +17,26 @@ const dummyTransactions = [
 
 var transactions = dummyTransactions;
 
+// Event Listener
+
+function addTransaction (e) {
+  e.preventDefault();
+
+  const text = $text.value.trim();
+  const amount = parseInt($amount.value);
+
+  transactions.push({ id: id++, text, amount });
+
+  console.log(dummyTransactions);
+
+  renderTransactions();
+  renderGlobalBalance();
+}
+
+// Render Functions
+
 function renderTransactions () {
+  $list.innerHTML = '';
   const nodesArr = [];
   transactions.forEach(t => {
     const node = document.createElement('li');
@@ -31,11 +52,6 @@ function renderTransactions () {
   });
 
   nodesArr.forEach(node => $list.appendChild(node));
-}
-
-function init () {
-  renderTransactions();
-  renderGlobalBalance();
 }
 
 function renderGlobalBalance () {
@@ -54,6 +70,13 @@ function renderGlobalBalance () {
   $balance.innerText = '$' + balance;
   $income.innerText = '$' + income;
   $expense.innerText = '-$' + expense;
+}
+
+function init () {
+  renderTransactions();
+  renderGlobalBalance();
+
+  $form.addEventListener('submit', addTransaction);
 }
 
 init();
