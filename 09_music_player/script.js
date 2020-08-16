@@ -1,6 +1,6 @@
 const musicContainer = document.getElementById('music-container');
 const playButton = document.getElementById('play');
-const prevButton = document.getElementById('prev');
+const previousButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
 
 const audio = document.getElementById('audio');
@@ -11,7 +11,7 @@ const cover = document.getElementById('cover');
 
 const songs = ['hey', 'summer', 'ukulele'];
 
-let songIndex = 2;
+let songIndex = 0;
 
 function loadSong (songName) {
   title.innerText = songName;
@@ -35,7 +35,33 @@ function pauseSong () {
   audio.pause();
 }
 
-loadSong('hey');
+function prevSong () {
+  songIndex === 0 ? songIndex : songIndex--;
+  loadSong(songs[songIndex]);
+  playSong();
+}
+
+function nextSong () {
+  songIndex === songs.length - 1 ? songIndex : songIndex++;
+  loadSong(songs[songIndex]);
+  playSong();
+}
+
+function updateProgress (e) {
+  const { duration, currentTime } = e.srcElement;
+  const progressPercentage = (currentTime / duration) * 100;
+
+  progress.style.width = `${progressPercentage}%`;
+}
+
+function setProgress (e) {
+  const totalWidth = this.clientWidth;
+  const clickX = e.offsetX;
+  const duration = audio.duration;
+
+  const progressRequest = (clickX / totalWidth) * duration;
+  audio.currentTime = progressRequest;
+}
 
 playButton.addEventListener('click', () => {
   const isPlaying = musicContainer.classList.contains('play');
@@ -46,3 +72,13 @@ playButton.addEventListener('click', () => {
     playSong();
   }
 });
+
+previousButton.addEventListener('click', prevSong);
+nextButton.addEventListener('click', nextSong);
+
+progressContainer.addEventListener('click', setProgress);
+audio.addEventListener('timeupdate', updateProgress);
+
+loadSong(songs[songIndex]);
+
+audio.addEventListener('ended', nextSong);
