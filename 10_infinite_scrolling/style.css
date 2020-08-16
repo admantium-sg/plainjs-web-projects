@@ -67,6 +67,12 @@ body {
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.show {
+  opacity: 1;
 }
 
 .circle {

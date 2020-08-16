@@ -1,53 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Infinite Scrolling</title>
-  <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/poppins" type="text/css" />
-  <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="style.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Infinite Scrolling</title>
+      <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/poppins" type="text/css"/>
+      <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+      integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
+      <link rel="stylesheet" href="style.css">
+    </head>
 
-<body>
-  <div class="filter-container">
-    <h1>My Blog</h1>
-    <input type="text" id="filter" class="filter" placeholder="Filter posts...">
-  </div>
-
-  <div id="posts-container">
-    <div class="post">
-      <div class="post-number">1</div>
-      <div class="post-info">
-        <h2 class="post-title">Post One</h2>
-        <p class="post-body">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur asperiores doloremque voluptatibus sunt
-          temporibus dolore unde fuga illo et quam.
-        </p>
+    <body>
+      <div class="filter-container">
+        <h1>My Blog</h1>
+        <input type="text" id="filter" class="filter" placeholder="Filter posts...">
       </div>
-    </div>
-    <div class="post">
-      <div class="post-number">2</div>
-      <div class="post-info">
-        <h2 class="post-title">Post Two</h2>
-        <p class="post-body">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur asperiores doloremque voluptatibus sunt
-          temporibus dolore unde fuga illo et quam.
-        </p>
+
+      <div id="posts-container"></div>
+
+      <div class="loader" id="loader">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
       </div>
-    </div>
-  </div>
 
-  <div class="loader">
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-  </div>
+      <script src="script.js"></script>
+    </body>
 
-  <script src="script.js"></script>
-</body>
-
-</html>
+  </html>
