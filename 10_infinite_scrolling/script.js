@@ -1,5 +1,6 @@
 const postContainer = document.getElementById('posts-container');
 const loader = document.getElementById('loader');
+const filter = document.getElementById('filter');
 
 var limit = 5;
 var page = 1;
@@ -50,11 +51,32 @@ function showLoader () {
   }
 }
 
+function filterPosts (e) {
+  console.log('filter');
+  const term = e.target.value.toUpperCase();
+  const posts = document.querySelectorAll('.post');
+
+  posts.forEach(post => {
+    const title = post.querySelector('.post-title').innerText.toUpperCase();
+    const body = post.querySelector('.post-body').innerText.toUpperCase();
+
+    console.log(post);
+
+    if (title.indexOf(term) > -1 || body.indexOf(term) > -1) {
+      post.style.display = 'flex';
+    } else {
+      post.style.display = 'none';
+    }
+  });
+}
+
 window.addEventListener('scroll', () => {
   if (isVisible(loader)) {
     console.log('Loader visible?', isVisible(loader));
     showLoader();
   }
 });
+
+filter.addEventListener('input', filterPosts);
 
 loadPosts();
