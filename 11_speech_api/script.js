@@ -83,6 +83,16 @@ function createBox (item) {
   main.appendChild(box);
 }
 
+const message = new SpeechSynthesisUtterance();
+
+function setTextMessage (text) {
+  message.text = text;
+}
+
+function speakText (text) {
+  speechSynthesis.speak(message);
+}
+
 function getVoices () {
   voices = speechSynthesis.getVoices();
 
@@ -96,6 +106,10 @@ function getVoices () {
   });
 }
 
+function setVoice (e) {
+  message.voice = voices.find(voice => voice.name === e.target.value);
+}
+
 speechSynthesis.addEventListener('voiceschanged', getVoices);
 
 // Speech Text Event Listeners
@@ -106,5 +120,12 @@ toggleBtn.addEventListener('click', () =>
 closeBtn.addEventListener('click', () =>
   document.getElementById('text-box').classList.toggle('show')
 );
+
+readBtn.addEventListener('click', () => {
+  setTextMessage(textarea.value);
+  speakText();
+});
+
+voicesSelect.addEventListener('change', setVoice);
 
 getVoices();
