@@ -115,9 +115,31 @@ function moveBall () {
         ) {
           ball.dy *= -1
           brick.visible = false
+
+          increaseScore()
         }
       }
     })
+  })
+
+  // Detect bottow canvas collision
+  if (ball.y + ball.size > canvas.height) {
+    showAllBricks()
+    score = 0
+  }
+}
+
+function increaseScore () {
+  score++
+
+  if (score % (brickRowCount * brickRowCount === 0)) {
+    showAllBricks()
+  }
+}
+
+function showAllBricks () {
+  bricks.forEach(column => {
+    column.forEach(brick => (brick.visible = true))
   })
 }
 
